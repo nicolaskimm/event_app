@@ -1,0 +1,8 @@
+.App {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(216, 214, 214);
+  height: auto;
+  min-height: 100vh;
+}
+

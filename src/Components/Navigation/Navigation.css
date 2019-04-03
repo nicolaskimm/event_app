@@ -1,0 +1,33 @@
+.navigation {
+    background-color: #2f3d3d;
+    width: 20vw;
+}
+
+.navigation_list {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.navigation_link {
+    list-style-type: none;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.navigation_link:first-child {
+    margin-top: 0;
+}
+
+.singlelink {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.singlelink:focus {
+    color: rgb(189, 50, 50);
+}
+
+
+
