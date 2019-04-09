@@ -5,7 +5,10 @@ import EventsContainer from './EventsContainer/EventsContainer';
 import Navigation from './Navigation/Navigation';
 import Home from './Home/Home';
 import uuidv5 from "uuid";
-import moment from 'moment';
+import 'moment/locale/pl';
+
+
+import Test from './Test/Test';
 
 
 class App extends Component {
@@ -15,50 +18,107 @@ class App extends Component {
       events: [
         {
           id: uuidv5(),
-          title: 'Koncert',
-          organisator: 'Kolo',
-          description: 'Super koncert',
-          place: 'gdzieś',
+          imgUrl: 'https://images.pexels.com/photos/175658/pexels-photo-175658.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Nick Cave',
+          description: 'xyz',
+          place: 'Torwar',
+          city: 'Warsaw',
           startDate: '1 czerwca 2018',
           endDate: '2 czerwca 2018',
-          category: '#muzyka'
+          category: 'muzyka',
         },
         {
           id: uuidv5(),
-          title: 'Imprezka',
-          organisator: 'Stefan',
-          description: 'Szaleństwo %%%',
-          place: 'Klubik',
+          imgUrl: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Red Hot Chilli Peppers',
+          description: 'xyz',
+          place: 'Klub Harenda',
+          city: 'Warsaw',
           startDate: '1 czerwca 2018',
           endDate: '2 czerwca 2018',
-          category: '#impreza'
+          category: 'muzyka',
         },
         {
           id: uuidv5(),
-          title: 'Koncert',
-          organisator: 'Kolo',
-          description: 'Super koncert',
-          place: 'gdzieś',
+          imgUrl: 'https://images.pexels.com/photos/1736222/pexels-photo-1736222.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Mirosław Bałka',
+          description: 'xyz',
+          place: 'MOCAK',
+          city: 'Kraków',
           startDate: '1 czerwca 2018',
           endDate: '2 czerwca 2018',
-          category: '#muzyka'
-        },
+          category: 'sztuka',
+        }
       ],
       filtered: [],
-      title: '',
       organisator: '',
       description: '',
       endDate: null,
       startDate: null,
       place: '',
+      city: '',
       category: '',
       search: '',
       focusedInput: null,
+      currentImageIndex: 1,
+      promotedEvents: [
+        {
+          id: uuidv5(),
+          imgUrl: 'https://images.pexels.com/photos/175658/pexels-photo-175658.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Nick Cave',
+          description: 'xyz',
+          place: 'Torwar',
+          city: 'Warsaw',
+          startDate: '1 czerwca 2018',
+          endDate: '2 czerwca 2018',
+          category: 'muzyka',
+        },
+        {
+          id: uuidv5(),
+          imgUrl: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Red Hot Chilli Peppers',
+          description: 'xyz',
+          place: 'Klub Harenda',
+          city: 'Warsaw',
+          startDate: '1 czerwca 2018',
+          endDate: '2 czerwca 2018',
+          category: 'muzyka',
+        },
+        {
+          id: uuidv5(),
+          imgUrl: 'https://images.pexels.com/photos/1736222/pexels-photo-1736222.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Mirosław Bałka',
+          description: 'xyz',
+          place: 'MOCAK',
+          city: 'Kraków',
+          startDate: '1 czerwca 2018',
+          endDate: '2 czerwca 2018',
+          category: 'sztuka',
+        }
+      ],
+      promotedUrls: [],
     }
+
     this.handleValue.bind(this);
     this.handleDate.bind(this);
     this.handleDelete.bind(this);
     this.onFocusChange.bind(this);
+    this.nextSlide = this.nextSlide.bind(this);
+		this.previousSlide = this.previousSlide.bind(this);
+  }
+
+  componentWillMount(){
+    this.getPromotedUrls();
+  }
+
+  getPromotedUrls(){
+    const urls = this.state.promotedEvents.map(item => {
+      return item.imgUrl
+    })
+
+    this.setState({
+      promotedUrls: urls
+    })
   }
 
   handleValue(e){
@@ -68,12 +128,14 @@ class App extends Component {
   }
 
   handleDate(startDate, endDate) {
-    const stary = moment(startDate).utc();
-    console.log(stary)
     this.setState({
+      startDate: startDate,
       endDate: endDate,
-      startDate: startDate
     })
+  }
+
+  formatDate(date){
+    return date.format('DD-MM-YYYY')
   }
 
   onFocusChange(focusedInput) {
@@ -83,12 +145,12 @@ class App extends Component {
   addEvent(){
     const newEvent = {
       id: uuidv5(),
-      title: this.state.title,
       organisator: this.state.organisator,
       description: this.state.description,
       place: this.state.place,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
+      city: this.state.city,
+      startDate: this.state.startDate.locale('pl').format('LL'),
+      endDate: this.state.endDate.locale('pl').format('LL'),
       category: this.state.category
     }
     this.setState({
@@ -96,15 +158,8 @@ class App extends Component {
     }) 
   }
 
-  checkStuff(){
-    this.state.events.map(item => (
-      console.log(item.id)
-    ));
-
-  }
-
-  onClick(){
-    console.log('klik tag');
+  checkStuff(e){
+    console.log(e.target.name);
   }
 
   handleDelete(e){
@@ -113,19 +168,82 @@ class App extends Component {
     this.setState({
       events: arr
     })
-    
+  }
+
+  editElement(e){
+    const parentEl = e.target.parentNode;
+    parentEl.setAttribute('contenteditable', 'true');
+  }
+
+  previousSlide () {
+		const lastIndex = this.state.promotedUrls.length - 1;
+		const { currentImageIndex } = this.state;
+		const shouldResetIndex = currentImageIndex === 0;
+		const index =  shouldResetIndex ? lastIndex : currentImageIndex - 1;
+		
+		this.setState({
+			currentImageIndex: index
+		});
+	}
+	
+	nextSlide () {
+    const lastIndex = this.state.promotedUrls.length - 1;
+    const { currentImageIndex } = this.state;
+    const shouldResetIndex = currentImageIndex === lastIndex;
+    const index = shouldResetIndex ? 0 : currentImageIndex + 1;
+
+    this.setState({
+      currentImageIndex: index
+    });
+  }
+
+  checkNextSlide() {
+    const imgUrls = this.state.promotedUrls;
+    const currIndex = this.state.currentImageIndex;
+
+    if (imgUrls[currIndex + 1]) {
+        return imgUrls[currIndex + 1]
+    } else {
+        return imgUrls[0]
+    }
+  }
+
+  checkPreviousSlide(){
+    const imgUrls = this.state.promotedUrls;
+    const currIndex = this.state.currentImageIndex;
+
+    if (imgUrls[currIndex - 1]) {
+        return imgUrls[currIndex - 1]
+    } else {
+        return imgUrls[imgUrls.length - 1]
+    }
   }
 
   render() {
     let filteredEvents = this.state.events.filter(item => {
-      return item.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 })
+      return item.organisator.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 })
 
     return (
       <div className='App'>
         <Navigation />
-        
+
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route 
+            exact path='/' 
+            render={(routeProps) => (
+              <Home
+                {...routeProps}
+                imgUrls = {this.state.promotedUrls}
+                promotedEvents = {this.state.promotedEvents}
+                currentImageIndex = {this.state.currentImageIndex}
+                previousSlide = {this.previousSlide.bind(this)}
+                nextSlide = {this.nextSlide.bind(this)}
+                checkNext = {this.checkNextSlide.bind(this)}
+                checkPrevious = {this.checkPreviousSlide.bind(this)}
+              />
+            )}
+          />
+          <Route path='/test' component={Test} />
           <Route 
             exact path='/wydarzenia' 
             render={(routeProps) => (
@@ -136,10 +254,10 @@ class App extends Component {
                 addEvent = {this.addEvent.bind(this)}
                 handleDelete = {this.handleDelete.bind(this)}
                 checkStuff = {this.checkStuff.bind(this)}
-                title = {this.state.title}
                 organisator = {this.state.organisator}
                 description = {this.state.description}
                 place = {this.state.place}
+                city = {this.state.city}
                 category = {this.state.category}
                 search = {this.state.search}
                 id = {this.state.id}
@@ -149,6 +267,7 @@ class App extends Component {
                 focusedInput = {this.state.focusedInput}
                 onFocusChange = {this.onFocusChange.bind(this)}
                 handleDate = {this.handleDate.bind(this)}
+                editElement = {this.editElement.bind(this)}
               />
             )}
           />

@@ -1,0 +1,37 @@
+$mainOrange: #FF8D23;
+
+
+.promotedText {
+    width: 100%;
+
+    > h1, p {
+        margin: 0 0 15px;
+    }
+
+    :first-child {
+        margin-top: 15px;
+
+        &::first-letter {
+            color: $mainOrange;
+            font-size: 1.4em;
+        }
+    }
+
+    .promotedText_organisator {
+        font-size: 1.3em;
+        letter-spacing: 0.1em;
+    }
+
+    .promotedText_date, .promotedText_place {
+
+        font-size: 1em;
+    }
+
+    .promotedText_button {
+        background: none;
+        border: 1px solid $mainOrange;
+        border-radius: 8px;
+        width: 150px;
+        height: 30px;
+    }
+}

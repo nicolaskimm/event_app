@@ -1,9 +1,8 @@
 import React from 'react';
+import './EventsContainer.css';
 import SingleEvent from '../SingleEvent/SingleEvent';
 
-import './EventsContainer.css';
 import 'react-dates/initialize';
-
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 
@@ -13,16 +12,16 @@ const EventsContainer = (props) => {
         <SingleEvent
             key = {index}
             id = {item.id}
-            title = {item.title}
             organisator = {item.organisator}
             description = {item.description}
             place = {item.place}
+            city = {item.city}
             startDate = {item.startDate}
             endDate = {item.endDate}
             category = {item.category}
-            onClick = {props.onClick}
             handleDelete = {props.handleDelete}
             checkStuff = {props.checkStuff}
+            editElement = {props.editElement}
         />
     ))
 
@@ -34,6 +33,7 @@ const EventsContainer = (props) => {
                     <input placeholder='organisator' name='organisator' onChange={props.handleValue} value={props.organisator} />
                     <input placeholder='description' name='description' onChange={props.handleValue} value={props.description} />
                     <input placeholder='where' name='place' onChange={props.handleValue} value={props.place} />
+                    <input placeholder='city' name='city' onChange={props.handleValue} value={props.city} />
                     <div className='datepick'>
                         <DateRangePicker 
                             onDatesChange={({ startDate, endDate }) => props.handleDate(startDate, endDate)} 
@@ -47,9 +47,15 @@ const EventsContainer = (props) => {
                             numberOfMonths={1}
                             small={true}
                             noBorder={true}
+                            displayFormat={'DD-MM-YYYY'}
+                            withPortal = {true}
                         />
                     </div>
-                    <input placeholder='category' name='category' onChange={props.handleValue} value={props.category} />
+                    <select name='category' onChange={props.handleValue}>
+                        <option value='film'>Film</option>
+                        <option value='muzyka'>Muzyka</option>
+                        <option value='sztuka'>Sztuka</option>
+                    </select>
                     <button onClick={props.addEvent}>add</button>
                     <button onClick={props.checkStuff}>read</button>
                 </div>

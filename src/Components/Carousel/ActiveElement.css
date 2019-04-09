@@ -1,0 +1,34 @@
+.promotedText {
+  width: 100%;
+}
+
+.promotedText > h1, .promotedText p {
+  margin: 0 0 15px;
+}
+
+.promotedText :first-child {
+  margin-top: 15px;
+}
+
+.promotedText :first-child::first-letter {
+  color: #FF8D23;
+  font-size: 1.4em;
+}
+
+.promotedText .promotedText_organisator {
+  font-size: 1.3em;
+  letter-spacing: 0.1em;
+}
+
+.promotedText .promotedText_date, .promotedText .promotedText_place {
+  font-size: 1em;
+}
+
+.promotedText .promotedText_button {
+  background: none;
+  border: 1px solid #FF8D23;
+  border-radius: 8px;
+  width: 150px;
+  height: 30px;
+}
+/*# sourceMappingURL=ActiveElement.css.map */

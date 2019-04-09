@@ -1,0 +1,39 @@
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 90vw;
+    height: 10vh;
+
+    .navigation_list {
+        margin: 0;
+        padding: 0;
+
+        .navigation_link {
+            display: inline-block;
+            list-style-type: none;
+            margin: 0 30px;
+            &:last-child {
+                margin-right: 0;
+            }
+
+            .singlelink {
+                color: rgb(0, 0, 0);
+                text-decoration: none;
+                font-size: 1.5em;
+                transition: 0.4s ease-in-out all;
+
+                &:hover {
+                    color: #FF8D23;
+                }
+
+                &:focus {
+                    @extend .singlelink:hover;
+                    font-weight: 900;
+                    letter-spacing: 8px;
+                }
+            }
+        }
+    }
+}
+
