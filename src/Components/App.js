@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import EventsContainer from './EventsContainer/EventsContainer';
 import Navigation from './Navigation/Navigation';
 import Home from './Home/Home';
+import SingleEventInfo from './SingleEventInfo/SingleEventInfo';
 import uuidv5 from "uuid";
 import 'moment/locale/pl';
 
@@ -26,6 +27,28 @@ class App extends Component {
           startDate: '1 czerwca 2018',
           endDate: '2 czerwca 2018',
           category: 'muzyka',
+        },
+        {
+          id: uuidv5(),
+          imgUrl: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Red Hot Chilli Peppers',
+          description: 'xyz',
+          place: 'Klub Harenda',
+          city: 'Warsaw',
+          startDate: '1 czerwca 2018',
+          endDate: '2 czerwca 2018',
+          category: 'muzyka',
+        },
+        {
+          id: uuidv5(),
+          imgUrl: 'https://images.pexels.com/photos/1736222/pexels-photo-1736222.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          organisator: 'Mirosław Bałka',
+          description: 'xyz',
+          place: 'MOCAK',
+          city: 'Kraków',
+          startDate: '1 czerwca 2018',
+          endDate: '2 czerwca 2018',
+          category: 'sztuka',
         },
         {
           id: uuidv5(),
@@ -97,6 +120,7 @@ class App extends Component {
         }
       ],
       promotedUrls: [],
+      clickedEvent: ''
     }
 
     this.handleValue.bind(this);
@@ -104,7 +128,8 @@ class App extends Component {
     this.handleDelete.bind(this);
     this.onFocusChange.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
-		this.previousSlide = this.previousSlide.bind(this);
+    this.previousSlide = this.previousSlide.bind(this);
+    this.checkStuff.bind(this);
   }
 
   componentWillMount(){
@@ -158,8 +183,16 @@ class App extends Component {
     }) 
   }
 
-  checkStuff(e){
-    console.log(e.target.name);
+  checkStuff(id){
+    const properEvent = this.state.events.filter(item =>
+      item.id === id
+    )
+
+    console.log(properEvent)
+
+    this.setState({
+      clickedEvent: properEvent
+    })
   }
 
   handleDelete(e){
@@ -228,6 +261,16 @@ class App extends Component {
         <Navigation />
 
         <Switch>
+          <Route
+            exact path='/events/:id'
+            render={(routeProps) => (
+              <SingleEventInfo
+                {...routeProps}
+                eventClicked = {this.state.clickedEvent}
+              />
+            )}
+          >
+          </Route>
           <Route 
             exact path='/' 
             render={(routeProps) => (

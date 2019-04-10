@@ -1,39 +1,60 @@
-.events_list {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    min-width: 100%;
-    background-color: rgb(216, 214, 214);
-    height: auto;
-}
-
-.inputs {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: auto;
-}
-
-.inputs input {
-    display: block;
-    width: 300px;
-    margin-bottom: 10px;
-    border: 2px solid rgb(169, 118, 228);
-
-}
-
 .events_main {
-    width: 80vw;
+  width: 90vw;
+  min-height: 80vh;
+  background-color: #F3F3F3;
 }
 
-.datepick {
-    height: auto;
-    margin-bottom: 10px;
+.events_main .inputs {
+  display: none;
 }
 
-.datepick input {
-    margin: 0;
+.events_main .inputs input {
+  display: block;
+  width: 200px;
+  margin-bottom: 10px;
+  border: 2px solid #a976e4;
 }
+
+.events_main .inputs .datepick {
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.events_main .inputs .datepick input {
+  margin: 0;
+}
+
+.events_main .inputSearch {
+  width: 10%;
+  margin: 10px 0 20px 10px;
+  background-color: #F3F3F3;
+  border: none;
+  border-bottom: 1px solid #FF8D23;
+  outline: none;
+  -webkit-transition: 0.5s ease-in-out all;
+  transition: 0.5s ease-in-out all;
+}
+
+.events_main .inputSearch:hover {
+  width: 80%;
+}
+
+.events_main .events_list {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-width: 100%;
+  height: auto;
+}
+/*# sourceMappingURL=EventsContainer.css.map */

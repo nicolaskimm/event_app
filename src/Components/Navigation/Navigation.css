@@ -35,7 +35,7 @@
   transition: 0.4s ease-in-out all;
 }
 
-.navigation .navigation_list .navigation_link .singlelink:hover, .navigation .navigation_list .navigation_link .singlelink:focus {
+.navigation .navigation_list .navigation_link .singlelink:hover, .navigation .navigation_list .navigation_link .singlelink:focus, .navigation .navigation_list .navigation_link .singlelink:active {
   color: #FF8D23;
 }
 

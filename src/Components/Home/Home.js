@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 import Carousel from '../Carousel/Carousel';
 
+
 const Home = (props) => {
     return (
         <div className='mainPage'>

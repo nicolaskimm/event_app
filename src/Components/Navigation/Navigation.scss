@@ -23,7 +23,7 @@
                 font-size: 1.5em;
                 transition: 0.4s ease-in-out all;
 
-                &:hover {
+                &:hover, &:active {
                     color: #FF8D23;
                 }
 

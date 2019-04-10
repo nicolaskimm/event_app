@@ -2,23 +2,60 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   list-style-type: none;
-  position: relative;
   width: 30%;
   height: auto;
   min-height: 400px;
   margin: 30px;
-  background-color: #f6f3ed;
   padding: 10px;
+  background-color: #ffffff;
+  -webkit-transition: 0.2s ease-in all;
   transition: 0.2s ease-in all;
 }
 
 .single_event:hover {
-  box-shadow: 10px 10px 20px grey;
-  transform: scale(1.02);
+  -webkit-box-shadow: 10px 10px 20px grey;
+          box-shadow: 10px 10px 20px grey;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
 }
 
-.single_event-photo {
+.single_event .single_event-photo {
   width: 100%;
 }
 
+.single_event .single_event_bottom {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 40px;
+  width: 100%;
+  border-top: 3px solid #F3F3F3;
+}
 
+.single_event .single_event_bottom .single_event_bottom-link {
+  color: #FF8D23;
+  text-decoration: none;
+}
+
+.single_event .single_event_bottom .single_event_bottom-buttons :first-child {
+  margin-right: 3px;
+}
+
+.single_event .single_event_bottom .single_event_bottom-buttons button {
+  background: #ffffff;
+  border: 1px solid #FF8D23;
+  font-size: 10px;
+}
+/*# sourceMappingURL=SingleEvent.css.map */

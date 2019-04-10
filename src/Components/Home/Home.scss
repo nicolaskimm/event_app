@@ -1,10 +1,11 @@
 $mainOrange: #FF8D23;
+$backgroundGrey: #F3F3F3;
 
 .mainPage {
     box-sizing: border-box;
     width: 90vw;
     height: 80vh;
-    background-color: #F3F3F3;
+    background-color: $backgroundGrey;
 
     .mainPage_title {
         height: 10%;
@@ -38,7 +39,6 @@ $mainOrange: #FF8D23;
             width: 300px;
             height: 400px;
             border-radius: 20px;
-
         }
         
         .arrow {
