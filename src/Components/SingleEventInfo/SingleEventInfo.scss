@@ -1,0 +1,39 @@
+$mainOrange: #FF8D23;
+$backgroundGrey: #F3F3F3;
+
+* {
+    box-sizing: border-box;
+}
+
+.singleEventInfo {
+    height: 80vh;
+    width: 90vw;
+    background-color: $backgroundGrey;
+
+    .singleEventInfo-up {
+        display: flex;
+        flex-direction: row;
+        padding: 15px;
+
+        .singleEventInfo_left {
+            margin: 0;
+            width: 50%;
+            height: 15em;
+    
+            .singleEventInfo_left-photo {
+                width: 90%;
+                height: 100%;
+            }
+        }
+    
+        .singleEventInfo_right {
+            width: 50%;
+        }
+    }
+
+    hr {
+        padding: 0;
+    }
+
+    
+}

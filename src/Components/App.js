@@ -188,8 +188,6 @@ class App extends Component {
       item.id === id
     )
 
-    console.log(properEvent)
-
     this.setState({
       clickedEvent: properEvent
     })
